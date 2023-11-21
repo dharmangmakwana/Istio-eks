@@ -1,0 +1,34 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: helloworldvs
+  namespace: devops
+spec:
+  hosts:
+    - 'helloworld.panamaxil.com'
+  gateways:
+    - mobifingw
+  http:
+    - route:
+      - destination:
+          host: helloworldsvc.devops.svc.cluster.local
+          port:
+            number: 80
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: nginxvs
+  namespace: devops
+spec:
+  hosts:
+    - 'devopsworld.panamaxil.com'
+  gateways:
+    - mobifingw
+  http:
+    - route:
+      - destination:
+          host: nginxsvc.devops.svc.cluster.local
+          port:
+            number: 80
